@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Enrollment Record · {{ e.full_name }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/print.css') }}">{% endblock %}
+{% block bodyclass %}print-body{% endblock %}
+{% block body %}
+<div class="toolbar no-print">
+  <button id="print-btn" class="btn btn-primary" type="button">Print record</button>
+  <button id="close-btn" class="btn" type="button">Close</button>
+  <span class="muted small">Tip: choose "Save as PDF" in the print dialog to keep a digital copy.</span>
+</div>
+<article class="sheet">
+  <header class="doc-head">
+    <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal">
+    <div><h1>ASIAN INSTITUTE OF COMPUTER STUDIES</h1><p class="branch">{{ e.branch_name }}</p>
+      <p class="doc-title">STUDENT ENROLLMENT RECORD</p></div>
+  </header>
+  <table class="meta">
+    <tr><th>Student ID</th><td>{{ e.student_no }}</td><th>School year</th><td>{{ e.school_year }}</td></tr>
+    <tr><th>Student name</th><td>{{ e.full_name }}</td><th>Semester</th><td>{{ e.semester }}</td></tr>
+    <tr><th>Program</th><td>{{ e.program_name }}</td><th>Year level</th><td>{{ e.year_level }}</td></tr>
+    <tr><th>Branch</th><td>{{ e.branch_name }}</td><th>Enrollment status</th><td><strong class="status {{ e.status }}">{{ e.status|upper }}</strong></td></tr>
+  </table>
+  <table class="subjects">
+    <thead><tr><th>Code</th><th>Subject</th><th>Section</th><th>Schedule</th><th>Room</th><th class="num">Units</th></tr></thead>
+    <tbody>
+    {% for i in e["items"] %}
+      <tr><td>{{ i.code }}</td><td>{{ i.title }}</td><td>{{ i.section_name }}</td><td>{{ i.schedule }}</td><td>{{ i.room or '-' }}</td><td class="num">{{ i.units }}</td></tr>
+    {% else %}<tr><td colspan="6" class="center">No subjects on this record.</td></tr>{% endfor %}
+    </tbody>
+    <tfoot><tr><td colspan="5" class="num">Total units</td><td class="num">{{ e.total_units }}</td></tr></tfoot>
+  </table>
+  <p class="small">Submitted: {{ e.submitted_at }}{% if e.reviewed_at %} &nbsp;|&nbsp; Reviewed: {{ e.reviewed_at }}{% if e.reviewer %} by {{ e.reviewer }}{% endif %}{% endif %}</p>
+  {% if e.remarks %}<p class="small">Remarks: {{ e.remarks }}</p>{% endif %}
+  <div class="sign">
+    <div><span class="line"></span>Student signature</div>
+    <div><span class="line"></span>Registrar</div>
+  </div>
+  <footer class="doc-foot">Date printed: {{ printed_on }} &nbsp;|&nbsp; Printed by: {{ printed_by.full_name }} ({{ printed_by.role }})</footer>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/print.js') }}"></script>{% endblock %}

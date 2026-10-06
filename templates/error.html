@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} · AICS{% endblock %}
+{% block bodyclass %}auth-body{% endblock %}
+{% block body %}
+<main class="auth-card center">
+  <img class="seal sm" src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal">
+  <h1 class="serif">{{ code }}</h1>
+  <p class="muted">{{ msg }}</p>
+  <p><a class="btn btn-primary" href="{{ url_for('home') }}">Back to home</a></p>
+</main>
+{% endblock %}

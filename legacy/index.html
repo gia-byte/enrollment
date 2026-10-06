@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enrollment System</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== LOGIN SCREEN ===================== -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-left">
+      <div class="login-logo">🎓</div>
+      <h1>Enrollment System</h1>
+      <p>A simple and convenient way to manage your enrollment.</p>
+    </div>
+    <div class="login-right">
+      <div class="login-box">
+        <div id="login-pane">
+          <h2>Login</h2>
+          <p class="muted">Please enter your credentials to continue.</p>
+          <form id="login-form">
+            <label for="login-username">Username / Student ID</label>
+            <input id="login-username" type="text" placeholder="e.g. 2025-000123" autocomplete="username" />
+
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password" />
+
+            <p id="login-error" class="field-error hidden"></p>
+
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+
+          <p class="switch-link">New student? <a href="#" id="show-register">Create an account</a></p>
+
+          <div class="demo-accounts">
+            <strong>Demo accounts</strong>
+            Admin: admin / admin123<br />
+            Registrar: registrar / registrar123<br />
+            Student: 2025-000123 / student123
+          </div>
+        </div>
+
+        <div id="register-pane" class="hidden">
+          <h2>Create your student account</h2>
+          <p class="muted">Register to browse courses and track your enrollment.</p>
+          <form id="register-form">
+            <label for="reg-id">Student ID</label>
+            <input id="reg-id" type="text" placeholder="e.g. 2025-000200" />
+
+            <label for="reg-name">Full Name</label>
+            <input id="reg-name" type="text" placeholder="Juan Dela Cruz" />
+
+            <label for="reg-course">Course</label>
+            <select id="reg-course">
+              <option>BS Computer Science</option>
+              <option>BS Information Technology</option>
+            </select>
+
+            <label for="reg-year">Year Level</label>
+            <select id="reg-year">
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+            </select>
+
+            <label for="reg-email">Email</label>
+            <input id="reg-email" type="email" placeholder="you@example.com" />
+
+            <label for="reg-password">Password</label>
+            <input id="reg-password" type="password" placeholder="At least 6 characters" />
+
+            <p id="register-error" class="field-error hidden"></p>
+
+            <button type="submit" class="btn btn-primary btn-block">Create account</button>
+          </form>
+          <p class="switch-link">Already have an account? <a href="#" id="show-login">Back to login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== APP SHELL ===================== -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-logo">🎓</span>
+        <span>Enrollment System</span>
+      </div>
+      <nav id="nav-links" class="nav-links"></nav>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="search-wrap">
+          <input id="global-search" type="text" placeholder="Find student by ID or name... ( press / )" />
+          <div id="search-results" class="search-results hidden"></div>
+        </div>
+        <div class="topbar-right">
+          <div class="notif-wrap">
+            <button id="notif-btn" class="icon-btn" title="Notifications">
+              🔔<span id="notif-count" class="notif-count hidden">0</span>
+            </button>
+            <div id="notif-dropdown" class="dropdown hidden"></div>
+          </div>
+          <div class="user-chip">
+            <span id="user-avatar" class="avatar"></span>
+            <div>
+              <div id="user-name" class="user-name"></div>
+              <div id="user-role" class="muted small"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="view-root" class="view-root"></main>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Printable area (populated by JS, only visible when printing) -->
+  <div id="print-area" class="print-area"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

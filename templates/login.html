@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Login · AICS{% endblock %}
+{% block bodyclass %}auth-body{% endblock %}
+{% block body %}
+<main class="auth-card">
+  <a class="back" href="{{ url_for('home') }}">&larr; Back to home</a>
+  <div class="center"><img class="seal sm" src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal">
+    <h1 class="serif">Sign in</h1><p class="muted">Students, registrar and administrators use the same login.</p></div>
+  <form id="login-form" novalidate>
+    <label for="username">Username or Student ID</label>
+    <input id="username" name="username" autocomplete="username" required maxlength="60" placeholder="e.g. 2025-000123">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200">
+    <p id="form-error" class="field-error" role="alert" hidden></p>
+    <button class="btn btn-primary btn-block" type="submit" id="submit-btn">Log in</button>
+  </form>
+  <p class="center muted">New student? <a href="{{ url_for('register_page') }}">Create an account</a></p>
+  {% if demo %}
+  <div class="demo-box"><strong>Demo accounts</strong>
+    <table><tr><td>Student</td><td><code>2025-000123</code></td><td><code>student123</code></td></tr>
+    <tr><td>Registrar</td><td><code>registrar</code></td><td><code>registrar123</code></td></tr>
+    <tr><td>Admin</td><td><code>admin</code></td><td><code>admin123</code></td></tr></table>
+    <span class="muted small">Shown only while DEMO_MODE=1.</span></div>
+  {% endif %}
+</main>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/login.js') }}"></script>{% endblock %}

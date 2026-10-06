@@ -1,0 +1,21 @@
+/* Printable enrollment record. Screen: a paper-like sheet with a toolbar. Print: only the sheet. */
+body.print-body{background:#e9ecf4;color:#000;font:13px/1.45 "Times New Roman",Georgia,serif;margin:0}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 20px;background:#fff;border-bottom:1px solid #ccd}
+.sheet{width:210mm;min-height:270mm;margin:18px auto;padding:16mm 15mm;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.doc-head{display:flex;align-items:center;gap:16px;border-bottom:3px double #14246a;padding-bottom:10px;margin-bottom:14px}
+.doc-head img{width:78px;height:78px;border-radius:50%}
+.doc-head h1{margin:0;font-size:20px;letter-spacing:.04em;color:#14246a}.doc-head p{margin:2px 0}.branch{font-weight:700;font-size:15px}.doc-title{font-weight:700;letter-spacing:.12em;margin-top:6px!important}
+table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.meta th,.meta td{padding:5px 8px;border:1px solid #9aa3c0;text-align:left;font-size:13px}.meta th{background:#eef1fa;width:17%;font-weight:700}
+.subjects th,.subjects td{padding:6px 8px;border:1px solid #9aa3c0;text-align:left;font-size:12.5px}.subjects thead th{background:#14246a;color:#fff}
+.subjects tfoot td{font-weight:700;background:#eef1fa}.num{text-align:right!important}.center{text-align:center}
+.status{letter-spacing:.06em}.status.approved{color:#0b6b32}.status.rejected{color:#a01a20}.status.pending{color:#8a5200}
+.small{font-size:12px}.sign{display:flex;justify-content:space-around;margin-top:46px}.sign div{width:38%;text-align:center;font-size:12px}.line{display:block;border-top:1px solid #000;margin-bottom:4px}
+.doc-foot{margin-top:30px;padding-top:8px;border-top:1px solid #9aa3c0;font-size:11px;color:#333}
+.btn{padding:8px 14px;border:1px solid #bbc;background:#fff;border-radius:6px;font:600 14px system-ui,sans-serif;cursor:pointer}.btn-primary{background:#2c4fb0;color:#fff;border-color:#2c4fb0}.muted{color:#667090}
+@page{size:A4;margin:10mm}
+@media print{
+  body.print-body{background:#fff}.no-print{display:none!important}
+  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
+  .subjects thead th,.meta th,.subjects tfoot td{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

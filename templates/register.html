@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Enroll · AICS{% endblock %}
+{% block bodyclass %}auth-body{% endblock %}
+{% block body %}
+<main class="auth-card wide">
+  <a class="back" href="{{ url_for('home') }}">&larr; Back to home</a>
+  <div class="center"><img class="seal sm" src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal">
+    <h1 class="serif">Create your student account</h1>
+    <p class="muted">You will get a Student ID to log in. Then you can choose subjects and submit your enrollment.</p></div>
+  <form id="reg-form" novalidate>
+    <div class="form-grid">
+      <div class="field span2"><label for="full_name">Full name</label><input id="full_name" name="full_name" required maxlength="80" autocomplete="name"><p class="field-error" data-for="full_name"></p></div>
+      <div class="field span2"><label for="email">Email</label><input id="email" name="email" type="email" required maxlength="120" autocomplete="email"><p class="field-error" data-for="email"></p></div>
+      <div class="field"><label for="branch_id">Branch</label>
+        <select id="branch_id" name="branch_id" required><option value="">Choose a branch</option>{% for b in branches %}<option value="{{ b.id }}">{{ b.name }}</option>{% endfor %}</select><p class="field-error" data-for="branch_id"></p></div>
+      <div class="field"><label for="program_id">Program</label>
+        <select id="program_id" name="program_id" required><option value="">Choose a program</option>{% for p in programs %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select><p class="field-error" data-for="program_id"></p></div>
+      <div class="field"><label for="year_level">Year level</label>
+        <select id="year_level" name="year_level" required><option value="">Choose a year</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option></select><p class="field-error" data-for="year_level"></p></div>
+      <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" required minlength="8" maxlength="72" autocomplete="new-password"><p class="hint">At least 8 characters with a letter and a number.</p><p class="field-error" data-for="password"></p></div>
+    </div>
+    <p id="form-error" class="field-error" role="alert" hidden></p>
+    <button class="btn btn-primary btn-block" type="submit" id="submit-btn">Create account</button>
+  </form>
+  <div id="success" class="success-box" hidden>
+    <h2 class="serif">Account created</h2>
+    <p>Your Student ID is <strong id="sno" class="big"></strong>. Use it as your username.</p>
+    <a class="btn btn-primary" href="{{ url_for('login_page') }}">Go to login</a>
+  </div>
+</main>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/register.js') }}"></script>{% endblock %}

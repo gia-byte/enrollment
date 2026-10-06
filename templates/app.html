@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}AICS Enrollment System{% endblock %}
+{% block bodyclass %}app-body{% endblock %}
+{% block body %}
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-brand" href="/"><img src="{{ url_for('static', filename='img/logo.jpg') }}" alt=""><span>AICS<small>Enrollment System</small></span></a>
+    <nav id="nav" aria-label="Main"></nav>
+    <button class="side-logout" id="logout-btn" type="button"></button>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu"></button>
+      <div class="topbar-title" id="period-chip"></div>
+      <div class="user-chip"><span class="avatar" id="avatar"></span><div><div id="uname" class="user-name"></div><div id="urole" class="muted small"></div></div></div>
+    </header>
+    <main id="view" class="view" tabindex="-1"><div class="loading">Loading&hellip;</div></main>
+  </div>
+</div>
+<div id="modal-root"></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/app.js') }}"></script>{% endblock %}

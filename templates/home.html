@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="site-nav">
+  <a class="brand" href="#top"><img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal"><span>Asian Institute<br>of Computer Studies</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+  <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span></label>
+  <nav>
+    <a href="#about">About</a><a href="#programs">Programs</a><a href="#branches">Branches</a><a href="#contact">Contact</a>
+    <a class="btn btn-sm btn-ghost" href="{{ url_for('login_page') }}">Student login</a>
+    <a class="btn btn-sm btn-gold" href="{{ url_for('register_page') }}">Enroll now</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="hero-kicker">Asian Institute of Computer Studies</p>
+    <h1 class="serif">Go Beyond Learning</h1>
+    <p class="lead">Computer and technology-focused education, offered across seven AICS branches in the Philippines.
+      Create your student account, pick your subjects and track your enrollment online.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold btn-lg" href="{{ url_for('register_page') }}">Enroll now</a>
+      <a class="btn btn-ghost btn-lg" href="{{ url_for('login_page') }}">Student login</a>
+      <a class="link-light" href="#about">Learn more</a>
+    </div>
+  </div>
+  <img class="hero-seal" src="{{ url_for('static', filename='img/logo.jpg') }}" alt="AICS seal: Asian Institute of Computer Studies, Excellence">
+</section>
+
+<section class="section" id="about">
+  <div class="wrap two-col">
+    <div>
+      <h2 class="serif">About AICS</h2>
+      <p>The Asian Institute of Computer Studies is a school focused on computer and information technology education.
+        Its programs are built around the skills students use in computing careers, taught in a branch near where they live.</p>
+      <p>This website is the school's enrollment portal. Students enroll online, the registrar reviews each request, and
+        approved students can see their subjects and class schedule right away.</p>
+    </div>
+    <ul class="why">
+      <li><strong>Technology-focused programs</strong><span>Courses centered on computing, software and information systems.</span></li>
+      <li><strong>Practical learning</strong><span>Hands-on subjects such as programming, databases and web development.</span></li>
+      <li><strong>Career-oriented education</strong><span>A curriculum aimed at preparing students for work in technology.</span></li>
+      <li><strong>Branches within reach</strong><span>Seven campuses, so you can study closer to home.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section alt" id="programs">
+  <div class="wrap">
+    <h2 class="serif">Programs</h2>
+    <p class="muted">Programs currently open for enrollment.</p>
+    <div class="grid-3">
+      {% for p in programs %}
+      <article class="tile"><span class="tile-code">{{ p.code }}</span><h3>{{ p.name }}</h3>
+        <p class="muted">Choose this program when you create your student account.</p></article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="branches">
+  <div class="wrap">
+    <h2 class="serif">Our branches</h2>
+    <p class="muted">Pick your branch when you enroll. Subjects and schedules are offered per branch.</p>
+    <ul class="branch-list">
+      {% for b in branches %}<li><span class="dot"></span>{{ b.name }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="serif">Ready to start your journey?</h2>
+    <p>Create your account in a few minutes and choose your subjects online.</p>
+    <a class="btn btn-gold btn-lg" href="{{ url_for('register_page') }}">Enroll now</a>
+  </div>
+</section>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand light"><img src="{{ url_for('static', filename='img/logo.jpg') }}" alt=""><span>Asian Institute<br>of Computer Studies</span></div>
+      <p>For questions about enrollment, visit your branch registrar's office.</p>
+    </div>
+    <div><h4>Branches</h4><ul>{% for b in branches %}<li>{{ b.name }}</li>{% endfor %}</ul></div>
+    <div><h4>Links</h4><ul>
+      <li><a href="#about">About</a></li><li><a href="#programs">Programs</a></li><li><a href="#branches">Branches</a></li>
+      <li><a href="{{ url_for('register_page') }}">Enroll now</a></li><li><a href="{{ url_for('login_page') }}">Login</a></li></ul></div>
+  </div>
+  <div class="wrap copy">&copy; Asian Institute of Computer Studies. Enrollment portal developed as a Software Engineering 2 project.</div>
+</footer>
+{% endblock %}
